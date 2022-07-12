@@ -1,0 +1,121 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --nav-color: linear-gradient(to right, #4400a2, #9e6dff);
+  --nav-highlight-color: rgba(166, 128, 255, 0.95);
+}
+
+.navbar {
+  background: var(--nav-color);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 50px;
+}
+
+.navbar-title {
+  font-size: 1.5rem;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.navbar-links {
+  height: 100%;
+}
+
+.navbar-links ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.navbar-links li {
+  padding: 1rem;
+  list-style: none;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  display: block;
+  color: #fff;
+  height: 100%;
+}
+
+.navbar-links li:hover {
+  background-color: var(--nav-highlight-color);
+}
+
+.hamburger-menu {
+  height: 100%;
+  display: none;
+  width: 50px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+.hamburger-menu .bar {
+  padding: 0;
+  width: 34px;
+  height: 3px;
+  display: block;
+  background-color: #fff;
+  border-radius: 2px;
+  margin: 0.25rem 0;
+  transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.hamburger-menu:hover {
+  background-color: var(--nav-highlight-color);
+}
+
+.hamburger-menu.active .bar:first-child {
+  transform: rotate(405deg);
+  transform-origin: 10% 200%;
+}
+
+.hamburger-menu.active .bar:last-child {
+  transform: rotate(-405deg);
+  transform-origin: 10% -150%;
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+  background-color: transparent;
+}
+
+@media (max-width:600px) {
+  .hamburger-menu {
+    display: flex;
+  }
+  .navbar-links {
+    background: var(--nav-color);
+    height: max-content;
+    width: 100%;
+    text-align: center;
+    transform: scaleY(0);
+    position: absolute;
+    top: 50px;
+    transform-origin: top;
+    transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .navbar-links ul {
+    flex-direction: column;
+  }
+  .hamburger-menu.active ~ .navbar-links {
+    transform: scaleY(1);
+    transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
